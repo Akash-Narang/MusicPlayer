@@ -11,15 +11,19 @@ export default {
   warningText: '#666804',
   noticeBackground: tintColor,
   noticeText: '#fff',
-  // Our Colors
 
-  primaryColor: '#191B2F',
-  accentColor: '#9458EA',
+
+
+  //local colors
+  primaryColor:'#19182F',
+  accentColor:'#9458EA',
   placeholderColor:'#989CC1',
   accentGradientStart:'#8250AF',
   accentGradientEnd:'#3A2496',
-  primaryGradientStart:'#1E2542',
-  primaryGradientEnd:'#16162C',
+  PrimaryGradientStart:'#1E2542',
+  PrimaryGradientEnd:'#16162C',
   headingColor:'#FFF',
-  greyColor: '#CCCCCC'
+  geryColor: '#CCCCCC',
+
+
 };
