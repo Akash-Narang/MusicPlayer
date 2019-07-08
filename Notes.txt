@@ -1,0 +1,8 @@
+react-native response-dimensions
+expo-linear-gradient
+@expo/vector-icons
+PubGK@la
+
+git remote add origin https://github.com/N7Aakash/MusicPlayer.git
+git remote -v
+

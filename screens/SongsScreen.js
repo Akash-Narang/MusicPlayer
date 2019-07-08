@@ -8,7 +8,10 @@ import {
   Text,
   TouchableOpacity,
   View,
+    FlatList
 } from 'react-native';
+
+import {Audio} from "expo-av";
 
 import {responsiveHeight, responsiveWidth, responsiveFontSize} from "react-native-responsive-dimensions";
 
@@ -17,7 +20,7 @@ import {LinearGradient} from "expo-linear-gradient";
 import Colors from "../constants/Colors";
 
 import {getAllSongs} from "../services/SongService";
-import {FlatList} from "react-navigation";
+
 import SongItem from "../components/SongItem";
 import RoundedButton from "../components/RoundedButton"
 import {MaterialIcons} from "@expo/vector-icons";
@@ -26,7 +29,8 @@ export default class SongsScreen extends Component{
     constructor(props){
       super(props);
       this.state={
-        songs:[]
+        songs:[],
+
       };
     }
 
@@ -37,6 +41,7 @@ export default class SongsScreen extends Component{
         songs:songs
       });
     }
+
 
 
     render(){
@@ -59,12 +64,23 @@ export default class SongsScreen extends Component{
             <FlatList data={this.state.songs}
                       style={{flex:1}}
                       keyExtractor={(data)=>data.id+""}
-                      renderItem={({item})=> <SongItem song={item}/>}/>
+                      renderItem={({item})=> <SongItem song={item}
+                                                       isActive={this.props.screenProps.isSongActive(item)}
+                                                       songClicked={(song)=>{this.props.screenProps.playSong(song)}}/>}/>
             </LinearGradient>
-            <NowPlaying/>
+              {Object.keys(this.props.screenProps.currentSong).length !== 0 ?
+                  <NowPlaying isPaused={this.props.screenProps.isPaused}
+                              currentPosition={this.props.screenProps.position}
+                              navigation={this.props.navigation}
+                              song={this.props.screenProps.currentSong}
+                              onToggle={this.props.screenProps.togglePause.bind(this)}/>
+
+                  : null}
           </View>
       );
     }
+
+
 
 }
 
